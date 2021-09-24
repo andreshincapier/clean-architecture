@@ -1,0 +1,9 @@
+*.iml
+.idea
+.gradle
+.scannerwork
+build
+out
+mqjms*
+derby.log
+/.idea/
