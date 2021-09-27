@@ -1,49 +1,13 @@
 buildscript {
     ext {
         springBootVersion = '2.2.2.RELEASE'
-        springCloudVersion = 'Hoxton.SR1'
     }
     repositories {
         mavenCentral()
-        maven { url "https://repo.spring.io/milestone" }
-        maven { url "https://repo.spring.io/snapshot" }
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.3"
     }
 }
-
-tasks.register("codeCoverageReport", JacocoReport) {
-    subprojects { subproject ->
-        subproject.plugins.withType(JacocoPlugin).configureEach {
-            subproject.tasks.matching({ t -> t.extensions.findByType(JacocoTaskExtension) }).configureEach { testTask ->
-                sourceSets subproject.sourceSets.main
-                executionData(testTask)
-            }
-            subproject.tasks.matching({ t -> t.extensions.findByType(JacocoTaskExtension) }).forEach {
-                rootProject.tasks.codeCoverageReport.dependsOn(it)
-            }
-        }
-    }
-    reports {
-        xml.enabled true
-        html.enabled true
-        html.destination file("${buildDir}/jacocoHtml")
-    }
-}
-
-apply plugin: "org.sonarqube"
 
 apply from: './main.gradle'
-
-sonarqube {
-    properties {
-        property "sonar.projectKey", "andreshincapier_ms-robbinfood-demo"
-        property "sonar.organization", "andreshincapier-key"
-        property "sonar.host.url", "https://sonarcloud.io"
-    }
-}
