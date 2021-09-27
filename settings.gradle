@@ -9,13 +9,11 @@ FileTree buildFiles = fileTree(rootDir) {
     }
 }
 
-String rootDirPath = rootDir.absolutePath + File.separator
 buildFiles.each(({ File buildFile ->
-
     boolean isDefaultName = 'build.gradle' == buildFile.name
     if (isDefaultName) {
         String projectName = buildFile.parentFile.name
-        String projectPath = ':' + projectName;
+        String projectPath = ':' + projectName
         include projectPath
         def project = findProject("${projectPath}")
         project.name = buildFile.parentFile.parentFile.name + '-' + projectName
@@ -23,8 +21,8 @@ buildFiles.each(({ File buildFile ->
         project.buildFileName = buildFile.name
 
     } else {
-        String projectName = buildFile.name.replace('.gradle', '');
-        String projectPath = ':' + projectName;
+        String projectName = buildFile.name.replace('.gradle', '')
+        String projectPath = ':' + projectName
         include projectPath
         def project = findProject("${projectPath}")
         project.name = projectName
