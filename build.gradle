@@ -7,7 +7,17 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.3"
     }
 }
 
 apply from: './main.gradle'
+apply plugin: "org.sonarqube"
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "andreshincapier_clean-architecture"
+        property "sonar.organization", "andreshincapier-key"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
