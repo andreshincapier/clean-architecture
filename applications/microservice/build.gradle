@@ -1,7 +1,7 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter'
+    compile 'org.springframework.boot:spring-boot-starter:2.5.4'
     compile 'org.reactivecommons.utils:object-mapper:0.1.0'
 
     implementation project(":domain-usecase")

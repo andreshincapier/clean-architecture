@@ -1,13 +1,11 @@
-package com.robinfood.clean.demo.entity;
+package com.robinfood.clean.demo.tasks;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
 @Builder(toBuilder = true)
 public class Task {
     private String id;
