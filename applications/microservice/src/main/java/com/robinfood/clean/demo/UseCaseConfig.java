@@ -15,7 +15,7 @@ public class UseCaseConfig {
     }
 
     @Bean
-    public SubmitTaskCommandUseCase surveyUseCase() {
+    public SubmitTaskCommandUseCase submitTaskCommandUseCase() {
         return new SubmitTaskCommandUseCase();
     }
 }
